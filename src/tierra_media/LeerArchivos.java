@@ -5,7 +5,11 @@ import java.util.*;
 
 public class LeerArchivos {
 	
-	
+	/**
+	 * Metodo que lee el archivo de Usuarios
+	 * @param archivo de usuarios 
+	 * @return Lista enlazada (LinkedList) de los usuarios leidos. 
+	 */
 	public static LinkedList<Usuario> leerUsuarios(String archivo){
 		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 		Scanner sc = null;
@@ -27,7 +31,11 @@ public class LeerArchivos {
 		sc.close();
 		return usuarios;		
 	}
-	
+	/**
+	 * Metodo que lee el archivo de Atracciones
+	 * @param archivo de atracciones 
+	 * @return Lista enlazada (LinkedList) de las atracciones leidas. 
+	 */
 	public static LinkedList<Atraccion> leerAtracciones(String archivo){
 		LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>();
 		Scanner sc = null;
@@ -50,10 +58,13 @@ public class LeerArchivos {
 		sc.close();
 		return atracciones;		
 	}
-	
-	
-	public static LinkedList<Atraccion> leerPromociones(String archivo, List<Atraccion> atraccionesArchivo){
-		LinkedList<Atraccion> promociones = new LinkedList<Atraccion>();
+	/**
+	 * Metodo que lee el archivo de Promociones
+	 * @param archivo de promociones, lista con atracciones. 
+	 * @return Lista enlazada (LinkedList) de las promociones leidas. 
+	 */
+	public static LinkedList<Promocion> leerPromociones(String archivo, List<Atraccion> atraccionesArchivo){
+		LinkedList<Promocion> promociones = new LinkedList<Promocion>();
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new File(archivo));
@@ -64,13 +75,13 @@ public class LeerArchivos {
 				String nombre = datos[0];
 				//aqui se almacena el tipo de la promocion
 				String tipo = datos[datos.length-1];
-				//arreglo donde se va a almacenar los nombres de las atracciones de la promo
+				/*lista donde se va a almacenar los nombres de las atracciones 
+				 * de la promo, leidos del archivo*/
 				ArrayList<String> nombreAtracciones = new ArrayList<String>();
 				for( int i= 1; i<datos.length-1; i++) {
 					nombreAtracciones.add(datos[i]);
 				}
-				
-				//arreglo donde se va a almacenar las Atracciones de la promo. 
+				//lista donde se va a almacenar las Atracciones de la promo. 
 				ArrayList<Atraccion> atraccionesPromo = new ArrayList<Atraccion>();
 				for (String a: nombreAtracciones) {
 					for (Atraccion b: atraccionesArchivo) {
@@ -79,8 +90,27 @@ public class LeerArchivos {
 						}
 					}
 				}
-				
-				
+				/*dependiendo el valor que tenga la variable "tipo"
+				 * se va a crear el tipo de promocion y se va a almacenar en 
+				 * la lista de promociones de retorno.*/	
+				try {
+					int descuentoMonedas = Integer.parseInt(tipo);
+					Promocion p = new Absoluta(nombre, atraccionesPromo, descuentoMonedas);
+					promociones.add(p);
+				}catch(NumberFormatException e1) {
+					try {
+						Double descuentoPorcentaje = Double.parseDouble(tipo);
+						Promocion p = new Porcentual(nombre, atraccionesPromo, descuentoPorcentaje);
+						promociones.add(p);
+					}catch(NumberFormatException e2) {
+						for(Atraccion a: atraccionesArchivo) {
+							if(tipo.equals(a.getNombre())) {
+								Promocion p = new AxB(nombre, atraccionesPromo, a);
+								promociones.add(p);
+							}
+						} 
+					}
+				}				
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -88,10 +118,4 @@ public class LeerArchivos {
 		sc.close();
 		return promociones;		
 	}
-	
-	
-	
-	
-	
-
 }
