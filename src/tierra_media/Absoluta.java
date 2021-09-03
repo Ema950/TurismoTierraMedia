@@ -1,10 +1,10 @@
 package tierra_media;
 import java.util.ArrayList;
 /**
- * Clase que hereda de Promocion, implementa promociones donde se aplica un
- * valor fijo en monedas a su costo total. 
+ * Clase que hereda de Promocion, permite crear promociones donde se aplica un
+ * descuento fijo en monedas a su costo total. 
  * @author Paiva, Víctor Emanuel
- * @version 02/09/2021
+ * @version 03/09/2021
  * @see https://github.com/Ema950/TurismoTierraMedia.git
  */
 public class Absoluta extends Promocion {
@@ -31,12 +31,14 @@ public class Absoluta extends Promocion {
 		return costo;	
 	}
 	
-	/**
-	 * Metodo que devuelve el descuento en monedas que ofrece la promocion. 
-	 * @return el descuento en cantidad de monedas. 
-	 */
+	@Override
+	public String toString() {
+		return super.toString()+"Su costo total es de: " + this.costo() 
+		+ " monedas, donde se aplico un descuento de: " + this.getDescuento() +
+				" monedas, y su duracion es de: "+ this.duracion()+ " horas.";
+	}
+	
 	public int getDescuento() {
 		return descuento;
 	}
-	
 }

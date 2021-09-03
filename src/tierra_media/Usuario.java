@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Clase necesaria para implementar los usuarios
  * @author  Paiva, Víctor Emanuel
- * @version 02/08/2021
+ * @version 03/09/2021
  * @see https://github.com/Ema950/TurismoTierraMedia.git
  */
 public class Usuario {
@@ -105,59 +105,35 @@ public class Usuario {
 	public int compareTo(Usuario u) { 
 		return this.getNombre().compareTo(u.getNombre());
 	}	
-	/**
-	 * Metodo que devuelve el Presupuesto de un Usuario
-	 * @return cantidad de monedas disponibles.
-	 */
+	
 	public int getPresupuesto() {
 		return presupuesto;
 	}
-	/**
-	 * Metodo que modifica el presupuesto que dispone un Usuario
-	 * @param presupuesto es el valor que se quiere modificar
-	 */
+	
 	public void setPresupuesto(int presupuesto) {
 		this.presupuesto = presupuesto;
 	}
-	/**
-	 * Metodo que devuelve el Tiempo que dispone un Usuario
-	 * @return tiempo disponible.
-	 */
+	
 	public double getTiempoDisponible() {
 		return tiempoDisponible;
 	}
-	/**
-	 * Metodo que modifica el tiempo que dispone un Usuario
-	 * @param tiempo es el valor que se quiere modificar
-	 */
+	
 	public void setTiempoDisponible(double tiempo) {
 		this.tiempoDisponible = tiempo;
 	}
-	/**
-	 * Metodo que devuelve las atracciones aceptadas por el usuario
-	 * @return lista de atracciones aceptadas.
-	 */
+	
 	public ArrayList<Atraccion> getHistorialAtracciones() {
 		return historialAtracciones;
 	}
-	/**
-	 * Metodo que modifica el historial de atracciones aceptadas por el Usuario
-	 * @param historialAtracciones representa la modificacion a realizar.
-	 */
+	
 	public void setHistorialAtracciones(ArrayList<Atraccion> historialAtracciones) {
 		this.historialAtracciones = historialAtracciones;
 	}
-	/**
-	 * Metodo que devuelve el nombre del Usuario
-	 * @return nombre del usuario.
-	 */
+	
 	public String getNombre() {
 		return nombre;
 	}
-	/**
-	 * Metodo que devuelve el tipo de atraccion favorita.
-	 * @return el tipo de atraccion favorita.
-	 */
+	
 	public TipoAtraccion getAtraccionPreferida() {
 		return atraccionPreferida;
 	}

@@ -5,7 +5,7 @@ import java.util.ArrayList;
  * Clase que hereda de Promocion, implementa promociones donde se aplica un
  * porcentaje de descuento a su costo total. 
  * @author Paiva, Víctor Emanuel
- * @version 02/09/2021
+ * @version 03/09/2021
  * @see https://github.com/Ema950/TurismoTierraMedia.git
  */
 public class Porcentual extends Promocion {
@@ -31,10 +31,14 @@ public class Porcentual extends Promocion {
 		costo -= (costo*this.getPorcentajeDescuento());
 		return (int) Math.round(costo);
 	}
-	/**
-	 * Metodo que devuelve el porcentaje de descuento que ofrece la promocion. 
-	 * @return el porcentaje de descuento. 
-	 */
+	
+	@Override
+	public String toString() {
+		return super.toString()+"Su costo total es de: " + this.costo() 
+		+ " monedas, aplicando un descuento de un: " + this.getPorcentajeDescuento()*100 +
+				" %, y su duracion es de: "+ this.duracion()+ " horas.";
+	}
+	
 	public double getPorcentajeDescuento() {
 		return porcentajeDescuento;
 	}

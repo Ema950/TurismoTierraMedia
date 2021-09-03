@@ -1,5 +1,10 @@
 package tierra_media;
-
+/**
+ * Interface que brinda la firma de metodos usados en Atracciones y Promociones
+ * @author Paiva, Víctor Emanuel
+ * @version 03/09/2021
+ * @see https://github.com/Ema950/TurismoTierraMedia.git
+ */
 public interface Sugerencia {
 	
 	/**

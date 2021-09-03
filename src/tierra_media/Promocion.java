@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Clase abstracta que representa una Promocion, de esta heredan los tipos de promocion
  * @author Paiva, Víctor Emanuel
- * @version 02/08/2021
+ * @version 03/09/2021
  * @see https://github.com/Ema950/TurismoTierraMedia.git
  */
 public abstract class Promocion implements Sugerencia {
@@ -32,6 +32,14 @@ public abstract class Promocion implements Sugerencia {
 		return retorno; 	
 	}
 	
+	@Override
+	public String toString() {
+		String nombreAtracciones = null;
+		for(Atraccion a : this.atracciones) {
+			nombreAtracciones= a.getNombre() + ", ";
+		}
+		return "Promocion: " + nombre + "Compuesta por las atracciones: "+ nombreAtracciones;
+	}
 
 	public String getNombre() {
 		return nombre;

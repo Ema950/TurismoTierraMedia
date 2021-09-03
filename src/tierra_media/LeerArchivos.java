@@ -2,6 +2,13 @@ package tierra_media;
 
 import java.io.*;
 import java.util.*;
+/**
+ * Clase que se utiliza para la lectura de los archivos; no se crean instancias
+ * de la misma, sino que hace uso de metodos static 
+ * @author Paiva, Víctor Emanuel
+ * @version 03/09/2021
+ * @see https://github.com/Ema950/TurismoTierraMedia.git
+ */
 
 public class LeerArchivos {
 	

@@ -1,5 +1,9 @@
 package tierra_media;
-
+/**
+ * @author Paiva, Víctor Emanuel
+ * @version 03/09/2021
+ * @see https://github.com/Ema950/TurismoTierraMedia.git
+ */
 public class Atraccion implements Sugerencia {
 
 	private String nombre;
@@ -55,6 +59,4 @@ public class Atraccion implements Sugerencia {
 	public void setCupo(int cupo) {
 		this.cupo = cupo;
 	}
-	
-	
 }
