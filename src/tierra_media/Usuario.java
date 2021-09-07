@@ -30,19 +30,28 @@ public class Usuario {
 	 * Se almacenan la atraccion en su Historial de atracciones; 
 	 * @param unaAtraccion representa la atraccion aceptada por el usuario. 
 	 */
-	public void aceptarSugerencia(Atraccion unaAtraccion) {
+	public void aceptarSugerencia(Sugerencia unaSugerencia) {
 		int presupuestoActual = this.getPresupuesto();
 		double tiempoActual = this.getTiempoDisponible();
-		this.setPresupuesto(presupuestoActual-unaAtraccion.costo());
-		this.setTiempoDisponible(tiempoActual-unaAtraccion.duracion());
-		this.getHistorialAtracciones().add(unaAtraccion);	
+		this.setPresupuesto(presupuestoActual-unaSugerencia.costo());
+		this.setTiempoDisponible(tiempoActual-unaSugerencia.duracion());
+		if(unaSugerencia instanceof Promocion) {
+			for(Atraccion a : ((Promocion) unaSugerencia).getAtracciones())
+				this.getHistorialAtracciones().add(a);
+			if(unaSugerencia instanceof AxB) {
+				this.getHistorialAtracciones().add(((AxB) unaSugerencia).getAtraccionGratis());
+			} 
+		}else {
+			this.getHistorialAtracciones().add((Atraccion) unaSugerencia);
+		}
+			
 	}
 	/**
 	 * Metodo que permite a un Usuario aceptar una sugerencia, en particular una Promocion.
 	 * Se modiifica su estado, restanto su presupuesto y tiempo disponible; 
 	 * Se almacenan la atraccion en su Historial de atracciones; 
 	 * @param unaPromocion representa la promocion aceptada por el usuario. 
-	 */
+	 *
 	public void aceptarSugerencia(Promocion unaPromocion) {
 		int presupuestoActual = this.getPresupuesto();
 		double tiempoActual = this.getTiempoDisponible();
@@ -53,7 +62,7 @@ public class Usuario {
 		if(unaPromocion instanceof AxB) {
 			this.getHistorialAtracciones().add(((AxB) unaPromocion).getAtraccionGratis());
 		} 
-	}
+	}**/
 	/**
 	 * Metodo que devuelve el costo total de un Itinerio asignado a un Usuario.
 	 * @return costo total en monedas.
@@ -88,14 +97,41 @@ public class Usuario {
 	public boolean tieneTiempo() {
 		return this.getTiempoDisponible()>0;
 	}
-	
+	/**
+	 * Metodo que indica si un Usuario puede recorrer una Sugerencia
+	 * @param unaSugerencia es la sugerencia a controlar 
+	 * @return true si puede recorre la sugerencia. 
+	 */
+	public boolean puedeRecorrer(Sugerencia unaSugerencia) {
+		return this.getPresupuesto() >= unaSugerencia.costo() 
+				&& this.getTiempoDisponible()>=unaSugerencia.duracion()
+				&& unaSugerencia.existeCupo();
+	}
+	/**
+	 * Metodo que indica si las atracciones de una Sugerencia estan incluidas
+	 * en el historial de atracciones de un Usuario
+	 */
+	public boolean poseeAtraccion(Sugerencia unaSugerencia) {
+		boolean retorno = false;
+		if(unaSugerencia instanceof Promocion) {
+			for (Atraccion a : ((Promocion) unaSugerencia).getAtracciones()) {
+				if(this.historialAtracciones.contains(a)) {
+					retorno = true;
+				}
+			}
+		}else {
+			this.historialAtracciones.contains(unaSugerencia);
+			retorno = true; 
+		}
+		return retorno; 
+	}
 	/**
 	 * Metodo toString sobrescrito para Usuarios.
 	 */
 	@Override
 	public String toString() {
-		return  nombre + ", Atraccion Preferida: " + atraccionPreferida + ", Presupuesto: "
-				+ presupuesto +" monedas, Tiempo Disponible: " + tiempoDisponible + " horas.";
+		return  nombre + ".  \nAtraccion Preferida: " + atraccionPreferida + ".  \nPresupuesto: "
+				+ presupuesto +" monedas.  \nTiempo Disponible: " + tiempoDisponible + " horas.\n";
 	}
 	/**
 	 * Metodo de comparacion sobrescrito

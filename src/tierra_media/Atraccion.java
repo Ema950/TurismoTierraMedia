@@ -35,13 +35,16 @@ public class Atraccion implements Sugerencia {
 	public boolean existeCupo() {
 		return this.getCupo() > 0;
 	}
-
+	
+	@Override
+	public boolean contieneTipo(TipoAtraccion unTipo) {
+		return this.getTipoDeAtraccion().toString().equals(unTipo.toString());
+	}
 	
 	@Override
 	public String toString() {
-		return "Atraccion: " + nombre + ", tiene un costo de: " + costo + 
-				" monedas, dura: " + tiempo + "hs, tiene un cupo de: " + 
-				cupo + ", es del tipo: " + tipo;
+		return "Atraccion: " + nombre + ".  \nTiene un costo de: " + costo + 
+				" monedas.  \nSu duracion es de: " + tiempo + " horas. \nEs del tipo: " + tipo + " \n";
 	}
 
 	public String getNombre() {
@@ -59,4 +62,5 @@ public class Atraccion implements Sugerencia {
 	public void setCupo(int cupo) {
 		this.cupo = cupo;
 	}
+
 }

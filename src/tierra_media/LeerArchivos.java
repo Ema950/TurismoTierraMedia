@@ -85,9 +85,9 @@ public class LeerArchivos {
 				/*lista donde se va a almacenar los nombres de las atracciones 
 				 * de la promo, leidos del archivo*/
 				ArrayList<String> nombreAtracciones = new ArrayList<String>();
-				for( int i= 1; i<datos.length-1; i++) {
+				for(int i=0; i<datos.length; i++) {
 					nombreAtracciones.add(datos[i]);
-				}
+				}				
 				//lista donde se va a almacenar las Atracciones de la promo. 
 				ArrayList<Atraccion> atraccionesPromo = new ArrayList<Atraccion>();
 				for (String a: nombreAtracciones) {

@@ -26,6 +26,7 @@ public class AxB extends Promocion {
 		int costo = 0; 
 		for(Atraccion c : this.atracciones)
 			costo+= c.costo();
+		costo-= this.getAtraccionGratis().costo();
 		return costo;
 	}
 	
@@ -48,10 +49,10 @@ public class AxB extends Promocion {
 	
 	@Override
 	public String toString() {
-		return super.toString()+"Su costo total es de: " + this.costo() 
-		+ " monedas, su duracion es de: "+ this.duracion()+ 
-		" horas y se ofrece como regalo la atraccion: "
-		+ this.getAtraccionGratis().getNombre();
+		return super.toString()+" \nSu costo total es de: " + this.costo() 
+		+ " monedas.  \nSu duracion es de: "+ this.duracion()+ 
+		" horas.  \nSe ofrece como regalo la atraccion: "
+		+ this.getAtraccionGratis().getNombre()+ " \n";
 	}
 
 	public Atraccion getAtraccionGratis() {

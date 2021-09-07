@@ -27,15 +27,19 @@ public class Absoluta extends Promocion {
 		int costo = 0;
 		for(Atraccion c : this.atracciones)
 			costo+= c.costo();
-		costo -=this.getDescuento();
-		return costo;	
+		if(costo > this.descuento) {
+			costo -=this.getDescuento();
+			return costo;
+		}else {
+			return 0;
+		}	
 	}
 	
 	@Override
 	public String toString() {
-		return super.toString()+"Su costo total es de: " + this.costo() 
+		return super.toString()+" \nSu costo total es de: " + this.costo() 
 		+ " monedas, donde se aplico un descuento de: " + this.getDescuento() +
-				" monedas, y su duracion es de: "+ this.duracion()+ " horas.";
+				" monedas.  \nSu duracion es de: "+ this.duracion()+ " horas. \n";
 	}
 	
 	public int getDescuento() {

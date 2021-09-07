@@ -29,14 +29,14 @@ public class Porcentual extends Promocion {
 		for(Atraccion c : this.atracciones)
 			costo+= c.costo();
 		costo -= (costo*this.getPorcentajeDescuento());
-		return (int) Math.round(costo);
+		return (int) Math.floor(costo);
 	}
 	
 	@Override
 	public String toString() {
-		return super.toString()+"Su costo total es de: " + this.costo() 
+		return super.toString()+" \nSu costo total es de: " + this.costo() 
 		+ " monedas, aplicando un descuento de un: " + this.getPorcentajeDescuento()*100 +
-				" %, y su duracion es de: "+ this.duracion()+ " horas.";
+				" %.  \nSu duracion es de: "+ this.duracion()+ " horas.\n";
 	}
 	
 	public double getPorcentajeDescuento() {

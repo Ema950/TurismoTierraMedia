@@ -22,5 +22,10 @@ public interface Sugerencia {
 	 * @return true si existe cupo. 
 	 */
 	public abstract boolean existeCupo();
+	/**
+	 * Metodo que indica si una Sugerencia tiene un determinado tipo de atraccion. 
+	 * @return true si posee dicho tipo.
+	 */
+	public abstract boolean contieneTipo(TipoAtraccion unTipo);
 
 }

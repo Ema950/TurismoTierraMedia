@@ -31,14 +31,40 @@ public abstract class Promocion implements Sugerencia {
 			retorno = retorno && c.existeCupo();
 		return retorno; 	
 	}
+	/**
+	 * Metodo que indica si una atraccion esta incluida en la promocion
+	 */
+	public boolean contieneAtraccion(Atraccion unaAtraccion) {
+		boolean retorno = false;
+		for(Atraccion a: this.getAtracciones()) {
+			if (unaAtraccion.equals(a)) {
+				retorno = true;
+			}
+		}
+		return retorno; 
+	}
+	/**
+	 * Metodo que determina si en la lista de atracciones de una promocion existe alguna
+	 * de un determinado tipo pasado por parametros. 
+	 */
+	@Override
+	public boolean contieneTipo(TipoAtraccion unTipo) {
+		boolean retorno = false; 
+		for (Atraccion a : this.getAtracciones()) {
+			if(a.getTipoDeAtraccion().toString().equals(unTipo.toString())) {
+				retorno=true; 
+			}
+		}
+		return retorno; 
+	}
 	
 	@Override
 	public String toString() {
-		String nombreAtracciones = null;
+		String nombreAtracciones ="";
 		for(Atraccion a : this.atracciones) {
-			nombreAtracciones= a.getNombre() + ", ";
+			nombreAtracciones+= a.getNombre() + ", ";
 		}
-		return "Promocion: " + nombre + "Compuesta por las atracciones: "+ nombreAtracciones;
+		return "Promocion: " + nombre + ".  \nCompuesta por las atracciones: "+ nombreAtracciones;
 	}
 
 	public String getNombre() {
