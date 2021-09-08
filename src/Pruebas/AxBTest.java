@@ -6,10 +6,9 @@ import org.junit.*;
 import tierra_media.*;
 /**
  * Pruebas Unitarias para la clase AxB.
- * @author Barboza, Dario; Capandeguy, Agustín; Fernandez, Cecilia Inés; 
- * Martinez, Leandro; Noir, Sergio Javier; Paiva, Víctor Emanuel
- * @version 01/09/2021
- * @see https://github.com/Voidt-Team/TurismoTierraMedia
+ * @author Paiva, Víctor Emanuel
+ * @version 08/09/2021
+ * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class AxBTest {
 	
@@ -33,8 +32,16 @@ public class AxBTest {
 		unaPromo = null; 
 	}
 	@Test
-	public void test() {
-		assertEquals(unaPromo.costo(), 10);
+	public void costoTest() {
+		assertEquals(10, unaPromo.costo());
+	}
+	@Test
+	public void duracionTest() {
+		assertEquals(5, unaPromo.duracion(), 0.1);
+	}
+	@Test
+	public void existeCupoTest() {
+		assertTrue(unaPromo.existeCupo());
 	}
 
 }

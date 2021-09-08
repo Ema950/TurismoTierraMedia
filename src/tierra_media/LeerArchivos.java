@@ -2,22 +2,25 @@ package tierra_media;
 
 import java.io.*;
 import java.util.*;
+
 /**
- * Clase que se utiliza para la lectura de los archivos; no se crean instancias
- * de la misma, sino que hace uso de metodos static 
+ * Clase que se utiliza para la lectura de los archivos, mediante el uso de
+ * metodos estaticos.
+ * 
  * @author Paiva, Víctor Emanuel
- * @version 03/09/2021
- * @see https://github.com/Ema950/TurismoTierraMedia.git
+ * @version 08/09/2021
+ * @see https://github.com/Ema950/TurismoTierraMedia
  */
 
 public class LeerArchivos {
-	
+
 	/**
 	 * Metodo que lee el archivo de Usuarios
-	 * @param archivo de usuarios 
-	 * @return Lista enlazada (LinkedList) de los usuarios leidos. 
+	 * 
+	 * @param archivo de usuarios
+	 * @return Lista enlazada (LinkedList) de los usuarios leidos.
 	 */
-	public static LinkedList<Usuario> leerUsuarios(String archivo){
+	public static LinkedList<Usuario> leerUsuarios(String archivo) {
 		LinkedList<Usuario> usuarios = new LinkedList<Usuario>();
 		Scanner sc = null;
 		try {
@@ -36,14 +39,16 @@ public class LeerArchivos {
 			e.printStackTrace();
 		}
 		sc.close();
-		return usuarios;		
+		return usuarios;
 	}
+
 	/**
 	 * Metodo que lee el archivo de Atracciones
-	 * @param archivo de atracciones 
-	 * @return Lista enlazada (LinkedList) de las atracciones leidas. 
+	 * 
+	 * @param archivo de atracciones
+	 * @return Lista enlazada (LinkedList) de las atracciones leidas.
 	 */
-	public static LinkedList<Atraccion> leerAtracciones(String archivo){
+	public static LinkedList<Atraccion> leerAtracciones(String archivo) {
 		LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>();
 		Scanner sc = null;
 		try {
@@ -63,14 +68,16 @@ public class LeerArchivos {
 			e.printStackTrace();
 		}
 		sc.close();
-		return atracciones;		
+		return atracciones;
 	}
+
 	/**
 	 * Metodo que lee el archivo de Promociones
-	 * @param archivo de promociones, lista con atracciones. 
-	 * @return Lista enlazada (LinkedList) de las promociones leidas. 
+	 * 
+	 * @param archivo de promociones, lista con atracciones.
+	 * @return Lista enlazada (LinkedList) de las promociones leidas.
 	 */
-	public static LinkedList<Promocion> leerPromociones(String archivo, List<Atraccion> atraccionesArchivo){
+	public static LinkedList<Promocion> leerPromociones(String archivo, List<Atraccion> atraccionesArchivo) {
 		LinkedList<Promocion> promociones = new LinkedList<Promocion>();
 		Scanner sc = null;
 		try {
@@ -78,51 +85,54 @@ public class LeerArchivos {
 			while (sc.hasNext()) {
 				String linea = sc.nextLine();
 				String datos[] = linea.split(", ");
-				//aqui se almacena el nombre de la promocion
+				// aqui se almacena el nombre de la promocion
 				String nombre = datos[0];
-				//aqui se almacena el tipo de la promocion
-				String tipo = datos[datos.length-1];
-				/*lista donde se va a almacenar los nombres de las atracciones 
-				 * de la promo, leidos del archivo*/
+				// aqui se almacena el tipo de la promocion
+				String tipo = datos[datos.length - 1];
+				/*
+				 * lista donde se va a almacenar los nombres de las atracciones de la promo,
+				 * leidos del archivo
+				 */
 				ArrayList<String> nombreAtracciones = new ArrayList<String>();
-				for(int i=0; i<datos.length; i++) {
+				for (int i = 0; i < datos.length; i++) {
 					nombreAtracciones.add(datos[i]);
-				}				
-				//lista donde se va a almacenar las Atracciones de la promo. 
+				}
+				// lista donde se va a almacenar las Atracciones de la promo.
 				ArrayList<Atraccion> atraccionesPromo = new ArrayList<Atraccion>();
-				for (String a: nombreAtracciones) {
-					for (Atraccion b: atraccionesArchivo) {
-						if(a.equals(b.getNombre())) {
+				for (String a : nombreAtracciones) {
+					for (Atraccion b : atraccionesArchivo) {
+						if (a.equals(b.getNombre())) {
 							atraccionesPromo.add(b);
 						}
 					}
 				}
-				/*dependiendo el valor que tenga la variable "tipo"
-				 * se va a crear el tipo de promocion y se va a almacenar en 
-				 * la lista de promociones de retorno.*/	
+				/*
+				 * dependiendo el valor que tenga la variable "tipo" se va a crear el tipo de
+				 * promocion y se va a almacenar en la lista de promociones de retorno.
+				 */
 				try {
 					int descuentoMonedas = Integer.parseInt(tipo);
 					Promocion p = new Absoluta(nombre, atraccionesPromo, descuentoMonedas);
 					promociones.add(p);
-				}catch(NumberFormatException e1) {
+				} catch (NumberFormatException e1) {
 					try {
 						Double descuentoPorcentaje = Double.parseDouble(tipo);
 						Promocion p = new Porcentual(nombre, atraccionesPromo, descuentoPorcentaje);
 						promociones.add(p);
-					}catch(NumberFormatException e2) {
-						for(Atraccion a: atraccionesArchivo) {
-							if(tipo.equals(a.getNombre())) {
+					} catch (NumberFormatException e2) {
+						for (Atraccion a : atraccionesArchivo) {
+							if (tipo.equals(a.getNombre())) {
 								Promocion p = new AxB(nombre, atraccionesPromo, a);
 								promociones.add(p);
 							}
-						} 
+						}
 					}
-				}				
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		sc.close();
-		return promociones;		
+		return promociones;
 	}
 }

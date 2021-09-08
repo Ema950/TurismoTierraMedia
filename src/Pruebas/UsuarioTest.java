@@ -5,10 +5,9 @@ import org.junit.*;
 import tierra_media.*;
 /**
  * Pruebas Unitarias para la clase Usuario
- * @author Barboza, Dario; Capandeguy, Agustín; Fernandez, Cecilia Inés; 
- * Martinez, Leandro; Noir, Sergio Javier; Paiva, Víctor Emanuel
- * @version 01/09/2021
- * @see https://github.com/Voidt-Team/TurismoTierraMedia
+ * @author Paiva, Víctor Emanuel
+ * @version 08/09/2021
+ * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class UsuarioTest {
 	
@@ -32,15 +31,13 @@ public class UsuarioTest {
 	}
 
 	@Test
-	public void aceptarSugerenciaAtraccionTest() {
+	public void aceptarSugerenciaTest() {
 		unUsuario.aceptarSugerencia(unaAtraccion);
 		assertNotNull(unUsuario.getHistorialAtracciones().get(0));
-	}
-	@Test
-	public void aceptarSugerenciaPromoTest() {
 		unUsuario.aceptarSugerencia(unaPromo);
-		assertNotNull(unUsuario.getHistorialAtracciones().get(0));
+		assertNotNull(unUsuario.getHistorialAtracciones().get(1));
 	}
+	
 	/*
 	 * Se agrega un test para el caso particular de las promociones AxB 
 	 * cuando se llama al metodo aceptarSugerencia(), debido a que en el historial 
@@ -81,6 +78,18 @@ public class UsuarioTest {
 		unUsuario.setTiempoDisponible(0);
 		assertFalse(unUsuario.tieneTiempo());
 	}
-	
+	@Test
+	public void puedeRecorrerTest() {
+		assertTrue(unUsuario.puedeRecorrer(unaAtraccion));
+		Atraccion otraAtraccion = new Atraccion("PRUEBA", 1000, 2000, 0, TipoAtraccion.AVENTURA);
+		assertFalse(unUsuario.puedeRecorrer(otraAtraccion));
+	}
+	@Test
+	public void poseeAtraccionTest() {
+		unUsuario.aceptarSugerencia(unaAtraccion);
+		assertTrue(unUsuario.poseeAtraccion(unaAtraccion));
+		unUsuario.aceptarSugerencia(unaPromo);
+		assertTrue(unUsuario.poseeAtraccion(unaPromo));
+	}
 
 }
