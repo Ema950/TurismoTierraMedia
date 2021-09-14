@@ -5,8 +5,8 @@ import java.util.ArrayList;
 /**
  * Clase necesaria para implementar los usuarios
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class Usuario {
@@ -30,7 +30,7 @@ public class Usuario {
 	 * estado, restanto su presupuesto y tiempo disponible; Se almacenan la
 	 * atraccion en su Historial de atracciones;
 	 * 
-	 * @param unaAtraccion representa la atraccion aceptada por el usuario.
+	 * @param unaSugerencia representa la atraccion aceptada por el usuario.
 	 */
 	public void aceptarSugerencia(Sugerible unaSugerencia) {
 		int presupuestoActual = this.getPresupuesto();

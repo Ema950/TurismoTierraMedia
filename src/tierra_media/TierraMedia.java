@@ -5,8 +5,8 @@ import java.util.*;
 /**
  * Clase que modela una Tierra Media, compuesta por atracciones y promociones.
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class TierraMedia {

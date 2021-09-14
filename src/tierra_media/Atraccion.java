@@ -3,8 +3,8 @@ package tierra_media;
 /**
  * Clase que permite crear un objeto de tipo Atraccion
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class Atraccion implements Sugerible {
@@ -36,6 +36,12 @@ public class Atraccion implements Sugerible {
 	@Override
 	public boolean existeCupo() {
 		return this.getCupo() > 0;
+	}
+	
+	@Override
+	public void restarCupo() {
+		this.setCupo(this.costo-1); 
+		
 	}
 
 	@Override

@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * Clase que hereda de Promocion, implementa promociones donde se ofrece una
  * atraccion gratis.
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class AxB extends Promocion {
@@ -49,6 +49,12 @@ public class AxB extends Promocion {
 		for (Atraccion c : this.atracciones)
 			retorno = retorno && c.existeCupo();
 		return retorno && this.getAtraccionGratis().existeCupo();
+	}
+	
+	@Override
+	public void restarCupo() {
+		super.restarCupo();
+		this.getAtraccionGratis().restarCupo();
 	}
 
 	@Override

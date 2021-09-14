@@ -6,8 +6,8 @@ import java.io.*;
  * Clase utilizada para crear los archivos de salida, mediante el uso de metodos
  * estaticos.
  * 
- * @author Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public class EscribirArchivos {

@@ -1,13 +1,14 @@
 package tierra_media;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Clase abstracta que representa una Promocion, de esta heredan los tipos de
  * promocion
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public abstract class Promocion implements Sugerible {
@@ -34,6 +35,13 @@ public abstract class Promocion implements Sugerible {
 		for (Atraccion c : this.atracciones)
 			retorno = retorno && c.existeCupo();
 		return retorno;
+	}
+	
+	@Override
+	public void restarCupo() {
+		for (Atraccion a : this.getAtracciones()) {
+			a.restarCupo();
+		}
 	}
 
 	/**

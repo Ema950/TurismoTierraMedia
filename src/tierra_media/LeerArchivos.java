@@ -7,8 +7,8 @@ import java.util.*;
  * Clase que se utiliza para la lectura de los archivos, mediante el uso de
  * metodos estaticos.
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 

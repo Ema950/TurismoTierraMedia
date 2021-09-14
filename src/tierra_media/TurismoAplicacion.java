@@ -6,12 +6,12 @@ import java.util.*;
 /**
  * Clase principal del sistema (main).
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 
-public class TurismoApp {
+public class TurismoAplicacion {
 
 	// Atributos donde se almacenan los datos leidos en cada archivo.
 	private static LinkedList<Usuario> usuarios = new LinkedList<Usuario>(
@@ -158,6 +158,7 @@ public class TurismoApp {
 				switch (opcion) {
 				case 1:
 					unUsuario.aceptarSugerencia(unaLista.get(i));
+					unaLista.get(i).restarCupo();
 					System.out.println("\nSugerencia agregada a su Itinerario\n");
 					break;
 				case 2:
@@ -188,6 +189,7 @@ public class TurismoApp {
 				switch (opcion) {
 				case 1:
 					unUsuario.aceptarSugerencia(unaLista.get(i));
+					unaLista.get(i).restarCupo();
 					System.out.println("Sugerencia agregada a su Itinerario\n");
 					break;
 				case 2:

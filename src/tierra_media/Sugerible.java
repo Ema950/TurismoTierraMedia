@@ -3,8 +3,8 @@ package tierra_media;
 /**
  * Interface que brinda la firma de metodos usados en Atracciones y Promociones
  * 
- * @author Paiva, Víctor Emanuel
- * @version 08/09/2021
+ * @author 4Elementos
+ * @version 13/09/2021 - FINAL
  * @see https://github.com/Ema950/TurismoTierraMedia
  */
 public interface Sugerible {
@@ -29,6 +29,11 @@ public interface Sugerible {
 	 * @return true si existe cupo.
 	 */
 	public abstract boolean existeCupo();
+	
+	/**
+	 * Metodo que resta en una unidad (-1) el cupo de una sugerencia 
+	 */
+	public abstract void restarCupo();
 
 	/**
 	 * Metodo que indica si una Sugerencia tiene un determinado tipo de atraccion.
