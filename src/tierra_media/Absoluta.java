@@ -27,7 +27,6 @@ public class Absoluta extends Promocion {
 	 * 
 	 * @return el costo de la promocion en monedas.
 	 */
-	@Override
 	public int costo() {
 		int costo = 0;
 		for (Atraccion c : this.atracciones)

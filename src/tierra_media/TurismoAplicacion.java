@@ -1,7 +1,12 @@
 package tierra_media;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
+
+import dao.AtraccionDao;
+import dao.PromocionDao;
+import dao.UsuarioDao;
 
 /**
  * Clase principal del sistema (main).
@@ -13,16 +18,14 @@ import java.util.*;
 
 public class TurismoAplicacion {
 
-	// Atributos donde se almacenan los datos leidos en cada archivo.
-	private static LinkedList<Usuario> usuarios = new LinkedList<Usuario>(
-			LeerArchivos.leerUsuarios("ArchivosEntrada/Usuarios.in"));
-	private static LinkedList<Atraccion> atracciones = new LinkedList<Atraccion>(
-			LeerArchivos.leerAtracciones("ArchivosEntrada/Atracciones.in"));
-	private static LinkedList<Promocion> promociones = new LinkedList<Promocion>(
-			LeerArchivos.leerPromociones("ArchivosEntrada/Promociones.in", atracciones));
-	private static Scanner ingresoConsola = new Scanner(System.in);
-
-	public static void main(String args[]) {
+	public static void main(String args[]) throws SQLException {
+		
+		UsuarioDao usuariosDao = new UsuarioDao();
+		LinkedList<Usuario> usuarios = usuariosDao.findAll();
+		AtraccionDao atraccionDao = new AtraccionDao();
+		LinkedList<Atraccion> atracciones = atraccionDao.findAll();
+		PromocionDao promoDao = new PromocionDao();
+		LinkedList<Promocion> promociones = promoDao.findAll();
 		/*
 		 * Lista donde se va a alamacenar lo leido en atracciones y promociones luego se
 		 * va a utilizar esta lista de sugerenica para crear una Tierra Media
@@ -82,7 +85,7 @@ public class TurismoAplicacion {
 		 */
 		for (Usuario u : usuariosProcesados) {
 			try {
-				EscribirArchivos.crearArchivoItinerario(u);
+				AlmacenarItinerario.crearArchivoItinerario(u);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -100,10 +103,12 @@ public class TurismoAplicacion {
 	 */
 	public static int ingresoConsola() {
 		int opcion = 0;
+		@SuppressWarnings("resource")
+		Scanner ingreso = new Scanner(System.in);
 		boolean ingresoCorrecto = false;
 		while (!ingresoCorrecto) {
 			try {
-				opcion = Integer.parseInt(ingresoConsola.next());
+				opcion = Integer.parseInt(ingreso.next());
 				ingresoCorrecto = true;
 			} catch (NumberFormatException e) {
 				System.out.println("Debe ingresar un numero! Vuelva a intentarlo por favor.");

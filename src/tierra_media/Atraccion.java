@@ -23,28 +23,23 @@ public class Atraccion implements Sugerible {
 		this.tipo = tipo;
 	}
 
-	@Override
 	public int costo() {
 		return this.costo;
 	}
 
-	@Override
 	public double duracion() {
 		return this.tiempo;
 	}
 
-	@Override
 	public boolean existeCupo() {
 		return this.getCupo() > 0;
 	}
 	
-	@Override
 	public void restarCupo() {
 		this.setCupo(this.costo-1); 
 		
 	}
 
-	@Override
 	public boolean contieneTipo(TipoAtraccion unTipo) {
 		return this.getTipoDeAtraccion().toString().equals(unTipo.toString());
 	}

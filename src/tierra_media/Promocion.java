@@ -1,7 +1,6 @@
 package tierra_media;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Clase abstracta que representa una Promocion, de esta heredan los tipos de
@@ -21,7 +20,7 @@ public abstract class Promocion implements Sugerible {
 		this.atracciones = atracciones;
 	}
 
-	@Override
+	
 	public double duracion() {
 		double duracion = 0;
 		for (Atraccion c : this.atracciones)
@@ -29,7 +28,7 @@ public abstract class Promocion implements Sugerible {
 		return duracion;
 	}
 
-	@Override
+	
 	public boolean existeCupo() {
 		boolean retorno = true;
 		for (Atraccion c : this.atracciones)
@@ -37,7 +36,7 @@ public abstract class Promocion implements Sugerible {
 		return retorno;
 	}
 	
-	@Override
+	
 	public void restarCupo() {
 		for (Atraccion a : this.getAtracciones()) {
 			a.restarCupo();
@@ -61,7 +60,7 @@ public abstract class Promocion implements Sugerible {
 	 * Metodo que determina si en la lista de atracciones de una promocion existe
 	 * alguna de un determinado tipo pasado por parametros.
 	 */
-	@Override
+	
 	public boolean contieneTipo(TipoAtraccion unTipo) {
 		boolean retorno = false;
 		for (Atraccion a : this.getAtracciones()) {

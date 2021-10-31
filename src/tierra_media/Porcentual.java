@@ -27,7 +27,7 @@ public class Porcentual extends Promocion {
 	 * 
 	 * @return el costo de la promocion en monedas.
 	 */
-	@Override
+	
 	public int costo() {
 		double costo = 0;
 		for (Atraccion c : this.atracciones)
@@ -36,7 +36,7 @@ public class Porcentual extends Promocion {
 		return (int) Math.floor(costo); // el valor despues de aplicar el descuento se redondea hacia abajo.
 	}
 
-	@Override
+	
 	public String toString() {
 		return super.toString() + " \nSu costo total es de: " + this.costo()
 				+ " monedas, aplicando un descuento de un: " + this.getPorcentajeDescuento() * 100
